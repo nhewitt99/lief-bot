@@ -16,14 +16,17 @@ class Bot(commands.Bot):
     Define a bot that keeps track of its own messages and cleans them up on close().
     All other commands get defined in main using decorators.
     """
+
     def __init__(self):
         intents = discord.Intents.default()
         intents.message_content = True
-        super().__init__(command_prefix=commands.when_mentioned_or('$'), intents=intents)
+        super().__init__(
+            command_prefix=commands.when_mentioned_or("$"), intents=intents
+        )
         self.my_messages = []
 
     async def on_ready(self):
-        print(f'Logged in as {self.user} ({self.user.id})')
+        print(f"Logged in as {self.user} ({self.user.id})")
 
     async def on_message(self, message):
         # Keep track of my own messages to clean up later
@@ -47,7 +50,7 @@ class DirectionalView(discord.ui.View):
 
         labels = [
             [None, "\u2191", None],
-#            ["\u21b6", None, "\u21b7"],
+            #            ["\u21b6", None, "\u21b7"],
             ["\u21b6", "camera", "\u21b7"],
             [None, "\u2193", None],
         ]
@@ -88,7 +91,7 @@ def main():
         await ctx.message.delete()
 
         # Default image
-        with open('imgs/default.png', 'rb') as f:
+        with open("imgs/default.png", "rb") as f:
             default_file = discord.File(f)
 
         # Pick a random welcome message and set up UI
@@ -106,13 +109,13 @@ def main():
         await ctx.message.delete()
 
         # Tell server we're shutting down
-        await ctx.send('eepy time')
+        await ctx.send("eepy time")
         await bot.close()
         print("Bot was shut down by request.")
 
     # Start the bot using auth token and wait for interrupt
     try:
-        with open('token.txt', 'r') as f:
+        with open("token.txt", "r") as f:
             token = f.readline()
         bot.run(token)
     except KeyboardInterrupt:
@@ -122,6 +125,5 @@ def main():
     capture.cleanup()
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
-

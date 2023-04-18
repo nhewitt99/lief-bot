@@ -125,7 +125,6 @@ def main():
     if argc > 3:
         port = sys.argv[3]
 
-
     if pubsub == "pub":
         pub = CameraPublisher(address=address, port=port)
 
@@ -140,7 +139,7 @@ def main():
         try:
             while True:
                 frame = sub.read()
-                cv2.imshow('test', frame)
+                cv2.imshow("test", frame)
                 cv2.waitKey(1)
         except KeyboardInterrupt:
             pass
@@ -149,5 +148,5 @@ def main():
         print("Specify pub or sub, doofus!")
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()

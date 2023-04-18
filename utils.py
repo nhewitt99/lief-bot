@@ -16,7 +16,9 @@ def add_text(frame):
     color_2 = (255, 255, 255)  # BGR
     thickness = 2
 
-    new_frame = cv2.putText(frame, text, location, font, font_scale, color_1, thickness + 3)
+    new_frame = cv2.putText(
+        frame, text, location, font, font_scale, color_1, thickness + 3
+    )
     new_frame = cv2.putText(frame, text, location, font, font_scale, color_2, thickness)
     return new_frame
 
@@ -30,7 +32,9 @@ def add_circle(frame):
     color = (0, 0, 255)  # BGR
     thickness = -1  # fill
 
-    new_frame = cv2.ellipse(frame, center, size, angle, start_angle, end_angle, color, thickness)
+    new_frame = cv2.ellipse(
+        frame, center, size, angle, start_angle, end_angle, color, thickness
+    )
     return new_frame
 
 
@@ -49,7 +53,7 @@ def frame_to_discord(frame_array, filename="test"):
     pil = Image.fromarray(img)
 
     img_bytes = io.BytesIO()
-    pil.save(img_bytes, format='PNG')
+    pil.save(img_bytes, format="PNG")
     img_bytes.seek(0)
 
     file = discord.File(img_bytes, filename=f"{filename}.png")

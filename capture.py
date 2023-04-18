@@ -12,8 +12,9 @@ class VideoCapture:
     which will discard all outdated frames, allowing the latest one to be accessed
     by the read() function.
     """
+
     def __init__(self, name):
-        self.cap = cv2.VideoCapture(name) # , cv2.CAP_V4L)
+        self.cap = cv2.VideoCapture(name)  # , cv2.CAP_V4L)
         self.q = queue.Queue()
         self.running = True
 
@@ -36,7 +37,7 @@ class VideoCapture:
                 break
             if not self.q.empty():
                 try:
-                    self.q.get_nowait()   # discard previous (unprocessed) frame
+                    self.q.get_nowait()  # discard previous (unprocessed) frame
                 except queue.Empty:
                     pass
             self.q.put(frame)

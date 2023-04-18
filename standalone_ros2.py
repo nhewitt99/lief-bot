@@ -15,7 +15,7 @@ from geometry_msgs.msg import Twist, Vector3
 class VelocityPublisher(Node):
     def __init__(self):
         super().__init__("velocity_publisher")
-        self.publisher = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.publisher = self.create_publisher(Twist, "cmd_vel", 10)
 
     def pub_velocity(self, linear, angular):
         """
@@ -49,7 +49,7 @@ class VelocityInterface:
 
         # Spin up thread to repeatedly publish commands
         self.q = queue.Queue()
-        self.thread = threading.Thread(target = self._ros_loop)
+        self.thread = threading.Thread(target=self._ros_loop)
         self.thread.daemon = True
         self.thread.start()
 
@@ -95,5 +95,5 @@ def main(args=None):
         time.sleep(1)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
