@@ -5,6 +5,7 @@ import discord
 
 import utils
 import buttons
+import webcam_zmq
 
 
 class Bot(commands.Bot):
@@ -61,7 +62,7 @@ class TestView(discord.ui.View):
 
 def main():
     bot = Bot()
-    capture = utils.VideoCapture(0)
+    capture = webcam_zmq.CameraSubscriber()
     random_messages, random_weights = utils.parse_message_file("messages.txt")
 
 
