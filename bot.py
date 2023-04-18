@@ -4,6 +4,7 @@ import random
 from discord.ext import commands
 import discord
 
+import capture
 import utils
 import buttons
 import webcam_zmq
@@ -82,12 +83,12 @@ def main():
     ]
 
     @bot.command()
-    async def test(ctx: commands.Context):
+    async def robot(ctx: commands.Context):
         # Clean up the requester's message
         await ctx.message.delete()
 
         # Default image
-        with open('test.png', 'rb') as f:
+        with open('imgs/default.png', 'rb') as f:
             default_file = discord.File(f)
 
         # Pick a random welcome message and set up UI
@@ -108,16 +109,6 @@ def main():
         await ctx.send('eepy time')
         await bot.close()
         print("Bot was shut down by request.")
-
-    @bot.command()
-    async def sus(ctx: commands.Context):
-        # Clean up requester's message
-        await ctx.message.delete()
-
-        with open('amogus.gif', 'rb') as f:
-            file = discord.File(f, filename='amogus.gif')
-
-        await ctx.send('when the imposter is SUS', file=file)
 
     # Start the bot using auth token and wait for interrupt
     try:

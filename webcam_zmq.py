@@ -2,17 +2,18 @@ import sys
 import cv2
 import zlib
 import zmq
-import utils
 import pickle
 import threading
 import queue
 import time
 
+import capture
+
 
 class CameraPublisher:
     def __init__(self, address="127.0.0.1", port=4949, fps=2, interface="/dev/video0"):
         # Set up a capture to always have latest webcam frame available
-        self.capture = utils.VideoCapture(interface)
+        self.capture = capture.VideoCapture(interface)
 
         # Use to signal thread when to stop
         self.running = True
