@@ -6,7 +6,7 @@ This codebase contains a Discord bot integration that allows my friends to contr
 Using a Discord bot, users can access a UI to move and take pictures using the robot.
 It's a bit disorienting, but works, honestly, much better than I expected.
 
-<img src="imgs/screencap.png" alt="Discord bot UI screenshot" height="400"> <img src="imgs/lief.jpg" alt="Image of Lief robot" height="400">
+<img src="imgs/screencap.png" alt="Discord bot UI screenshot" height="300"> <img src="imgs/lief.jpg" alt="Image of Lief robot" height="300">
 
 # requirements
 Tested using ROS 2 Humble, discord.py version 2.2.2, opencv-python version 4.7.0, Create 3 firmware version H.0.0.
