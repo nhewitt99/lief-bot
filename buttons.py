@@ -31,12 +31,12 @@ class MoveButton(discord.ui.Button):
     """
     Create a UI button that will command a movement of the robot using ROS
     """
-    def __init__(self, text, movement, row=0):
+    def __init__(self, text, callback, row=0):
         super().__init__(style=discord.ButtonStyle.blurple, label=text, row=row)
-        self.movement = movement
+        self._callback = callback
 
     async def callback(self, interaction):
-        print(f'Called {self.movement}')
+        self._callback()
         await interaction.response.defer()
 
 
@@ -52,8 +52,9 @@ class NoneButton(discord.ui.Button):
 
 
 
-def parse_button_array(labels, movement_dict, capture):
+def parse_button_array(labels, capture, callbacks):
     button_list = []
+    callback_counter = 0  # not pythonic :(((
 
     for i, row in enumerate(labels):
         for button in row:
@@ -62,7 +63,8 @@ def parse_button_array(labels, movement_dict, capture):
             elif button == "camera":
                 button_list.append(ImageButton("", capture, row=i))
             else:
-                movement = movement_dict[button]
-                button_list.append(MoveButton(text=button, movement=movement, row=i))
+                callback = callbacks[callback_counter]
+                button_list.append(MoveButton(text=button, callback=callback, row=i))
+                callback_counter += 1
 
     return button_list

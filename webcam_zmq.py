@@ -10,7 +10,7 @@ import time
 
 
 class CameraPublisher:
-    def __init__(self, address="127.0.0.1", port=4949, fps=10, interface="/dev/video0"):
+    def __init__(self, address="127.0.0.1", port=4949, fps=2, interface="/dev/video0"):
         # Set up a capture to always have latest webcam frame available
         self.capture = utils.VideoCapture(interface)
 
